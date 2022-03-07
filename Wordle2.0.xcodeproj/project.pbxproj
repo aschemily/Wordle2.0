@@ -9,21 +9,21 @@
 /* Begin PBXBuildFile section */
 		32BCB4F127D2811000D22E3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB4F027D2811000D22E3C /* AppDelegate.swift */; };
 		32BCB4F327D2811000D22E3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB4F227D2811000D22E3C /* SceneDelegate.swift */; };
-		32BCB4F527D2811000D22E3C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB4F427D2811000D22E3C /* ViewController.swift */; };
 		32BCB4F827D2811000D22E3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BCB4F627D2811000D22E3C /* Main.storyboard */; };
 		32BCB4FA27D2811200D22E3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32BCB4F927D2811200D22E3C /* Assets.xcassets */; };
 		32BCB4FD27D2811200D22E3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BCB4FB27D2811200D22E3C /* LaunchScreen.storyboard */; };
+		32BCB50B27D65C6B00D22E3C /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB50A27D65C6B00D22E3C /* WordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		32BCB4ED27D2811000D22E3C /* Wordle2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordle2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BCB4F027D2811000D22E3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32BCB4F227D2811000D22E3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		32BCB4F427D2811000D22E3C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		32BCB4F727D2811000D22E3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		32BCB4F927D2811200D22E3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32BCB4FC27D2811200D22E3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32BCB4FE27D2811200D22E3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32BCB50A27D65C6B00D22E3C /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +56,63 @@
 		32BCB4EF27D2811000D22E3C /* Wordle2.0 */ = {
 			isa = PBXGroup;
 			children = (
-				32BCB4F027D2811000D22E3C /* AppDelegate.swift */,
-				32BCB4F227D2811000D22E3C /* SceneDelegate.swift */,
-				32BCB4F427D2811000D22E3C /* ViewController.swift */,
-				32BCB4F627D2811000D22E3C /* Main.storyboard */,
-				32BCB4F927D2811200D22E3C /* Assets.xcassets */,
-				32BCB4FB27D2811200D22E3C /* LaunchScreen.storyboard */,
-				32BCB4FE27D2811200D22E3C /* Info.plist */,
+				32BCB50727D281B700D22E3C /* Controllers */,
+				32BCB50627D2818B00D22E3C /* Models */,
+				32BCB50527D2817700D22E3C /* Storyboards */,
+				32BCB50427D2816D00D22E3C /* Resources */,
 			);
 			path = Wordle2.0;
+			sourceTree = "<group>";
+		};
+		32BCB50427D2816D00D22E3C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				32BCB4F027D2811000D22E3C /* AppDelegate.swift */,
+				32BCB4F227D2811000D22E3C /* SceneDelegate.swift */,
+				32BCB4F927D2811200D22E3C /* Assets.xcassets */,
+				32BCB4FE27D2811200D22E3C /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		32BCB50527D2817700D22E3C /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				32BCB4F627D2811000D22E3C /* Main.storyboard */,
+				32BCB4FB27D2811200D22E3C /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		32BCB50627D2818B00D22E3C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		32BCB50727D281B700D22E3C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				32BCB50927D281C400D22E3C /* ViewControllers */,
+				32BCB50827D281BD00D22E3C /* ModelControllers */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		32BCB50827D281BD00D22E3C /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ModelControllers;
+			sourceTree = "<group>";
+		};
+		32BCB50927D281C400D22E3C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				32BCB50A27D65C6B00D22E3C /* WordViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32BCB4F527D2811000D22E3C /* ViewController.swift in Sources */,
+				32BCB50B27D65C6B00D22E3C /* WordViewController.swift in Sources */,
 				32BCB4F127D2811000D22E3C /* AppDelegate.swift in Sources */,
 				32BCB4F327D2811000D22E3C /* SceneDelegate.swift in Sources */,
 			);
@@ -290,7 +338,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Wordle2.0/Info.plist;
+				INFOPLIST_FILE = Wordle2.0/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -317,7 +365,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Wordle2.0/Info.plist;
+				INFOPLIST_FILE = Wordle2.0/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
