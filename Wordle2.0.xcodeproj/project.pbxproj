@@ -12,7 +12,11 @@
 		32BCB4F827D2811000D22E3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BCB4F627D2811000D22E3C /* Main.storyboard */; };
 		32BCB4FA27D2811200D22E3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32BCB4F927D2811200D22E3C /* Assets.xcassets */; };
 		32BCB4FD27D2811200D22E3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BCB4FB27D2811200D22E3C /* LaunchScreen.storyboard */; };
-		32BCB50B27D65C6B00D22E3C /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB50A27D65C6B00D22E3C /* WordViewController.swift */; };
+		32BCB50D27D6A82400D22E3C /* WordGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB50C27D6A82400D22E3C /* WordGridViewController.swift */; };
+		32BCB51327D6E2C000D22E3C /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB51227D6E2C000D22E3C /* Word.swift */; };
+		32BCB51727D7C3AC00D22E3C /* WordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB51627D7C3AC00D22E3C /* WordTableViewCell.swift */; };
+		32BCB51B27D7CA0500D22E3C /* CustomUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB51A27D7CA0500D22E3C /* CustomUI.swift */; };
+		32BCB51D27D7F48300D22E3C /* WordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB51C27D7F48300D22E3C /* WordController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +27,11 @@
 		32BCB4F927D2811200D22E3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32BCB4FC27D2811200D22E3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32BCB4FE27D2811200D22E3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32BCB50A27D65C6B00D22E3C /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
+		32BCB50C27D6A82400D22E3C /* WordGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGridViewController.swift; sourceTree = "<group>"; };
+		32BCB51227D6E2C000D22E3C /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		32BCB51627D7C3AC00D22E3C /* WordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTableViewCell.swift; sourceTree = "<group>"; };
+		32BCB51A27D7CA0500D22E3C /* CustomUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUI.swift; sourceTree = "<group>"; };
+		32BCB51C27D7F48300D22E3C /* WordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +95,7 @@
 		32BCB50627D2818B00D22E3C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				32BCB51227D6E2C000D22E3C /* Word.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -103,6 +112,7 @@
 		32BCB50827D281BD00D22E3C /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
+				32BCB51C27D7F48300D22E3C /* WordController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -110,7 +120,9 @@
 		32BCB50927D281C400D22E3C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				32BCB50A27D65C6B00D22E3C /* WordViewController.swift */,
+				32BCB50C27D6A82400D22E3C /* WordGridViewController.swift */,
+				32BCB51627D7C3AC00D22E3C /* WordTableViewCell.swift */,
+				32BCB51A27D7CA0500D22E3C /* CustomUI.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -186,9 +198,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32BCB50B27D65C6B00D22E3C /* WordViewController.swift in Sources */,
 				32BCB4F127D2811000D22E3C /* AppDelegate.swift in Sources */,
+				32BCB51B27D7CA0500D22E3C /* CustomUI.swift in Sources */,
+				32BCB50D27D6A82400D22E3C /* WordGridViewController.swift in Sources */,
+				32BCB51327D6E2C000D22E3C /* Word.swift in Sources */,
 				32BCB4F327D2811000D22E3C /* SceneDelegate.swift in Sources */,
+				32BCB51D27D7F48300D22E3C /* WordController.swift in Sources */,
+				32BCB51727D7C3AC00D22E3C /* WordTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
