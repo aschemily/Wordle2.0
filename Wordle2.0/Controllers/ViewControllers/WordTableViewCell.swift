@@ -15,7 +15,8 @@ class WordTableViewCell: UITableViewCell {
     @IBOutlet weak var fourthLetter: UILabel!
     @IBOutlet weak var fifthLetter: UILabel!
     
-    
+  
+//landing pad for to grab letters
     var userWord: String = ""{
         didSet{
             updateViews()
@@ -24,47 +25,62 @@ class WordTableViewCell: UITableViewCell {
     
     
     func updateViews(){
-        var userWord = userWord
-        //while userWord length is less than five add empty spaces to word
-        while userWord.count < 5{
-            userWord.append(" ")
-        }
-        //create array
-        var wordArray = Array(repeating: " ", count: 5)
-        
-        for i in 0...4{
-            let index = String.Index(utf16Offset: i, in: userWord)
-          
-        }
-        
-//        firstLetter.text = String(splitWord[0])
-//        secondLetter.text = String(splitWord[1])
-//        thirdLetter.text = String(splitWord[2])
-//        fourthLetter.text = String(splitWord[3])
-//        fifthLetter.text = String(splitWord[4])
+        let wordArray = Array(userWord)
     
-       
+        switch wordArray.count{
+
+        case 1:
+            firstLetter.text = String(wordArray[0])
+            secondLetter.text = ""
+            thirdLetter.text = ""
+            fourthLetter.text = ""
+            fifthLetter.text = ""
+            
+        case 2:
+            firstLetter.text = String(wordArray[0])
+            secondLetter.text = String(wordArray[1])
+            thirdLetter.text = ""
+            fourthLetter.text = ""
+            fifthLetter.text = ""
+        case 3:
+            firstLetter.text = String(wordArray[0])
+            secondLetter.text = String(wordArray[1])
+            thirdLetter.text = String(wordArray[2])
+            fourthLetter.text = ""
+            fifthLetter.text = ""
+        case 4:
+            firstLetter.text = String(wordArray[0])
+            secondLetter.text = String(wordArray[1])
+            thirdLetter.text = String(wordArray[2])
+            fourthLetter.text = String(wordArray[3])
+            fifthLetter.text = ""
+        case 5:
+            firstLetter.text = String(wordArray[0])
+            secondLetter.text = String(wordArray[1])
+            thirdLetter.text = String(wordArray[2])
+            fourthLetter.text = String(wordArray[3])
+            fifthLetter.text = String(wordArray[4])
+            
+        default:
+            firstLetter.text = ""
+                  secondLetter.text = ""
+                  thirdLetter.text = ""
+                  fourthLetter.text = ""
+                  fifthLetter.text = ""
+        }
+        
     }
     
-//    func updateViews(){
-//        var userWord = userWord
-//        while userWord.count < 5{
-//            userWord.append(" ")
-//        }
-//        var array = Array(repeating: " ", count: 5)
-//        for i in 0...4{
-//            let index = String.Index(utf16Offset: i, in: userWord)
-//            array[i] = String(userWord[index])
-//        }
-//        firstLetter.text = String(array[0])
-//        secondLetter.text = String(array[1])
-//        thirdLetter.text = String(array[2])
-//        fourthLetter.text = String(array[3])
-//        fifthLetter.text = String(array[4])
-//
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        firstLetter.text = ""
+//        secondLetter.text = ""
+//        thirdLetter.text = ""
+//        fourthLetter.text = ""
+//        fifthLetter.text = ""
 //    }
     
- 
-    
-    
 }//end of class
+
+
+
