@@ -26,18 +26,18 @@ class WordGridViewController: UIViewController {
     @IBAction func keyBoardTapped(_ sender: UIButton) {
         //pass keyboard press to cell
         switch sender.tag{
-        case 1,2,3,4,5,6,7,8,9:
+        case 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20,21,22,23,24,25,26:
             guard let letter = sender.titleLabel?.text
                else {return}
                 lettersGuessed(letter: letter)
         case 19:
-//            if playersGuesses.count == 5{
-//                currentRow += 1
-//            }else{
-//                print("enter more letters")
-//            }
-            currentRow += 1
-            
+           // print(playersGuesses[currentRow].count)
+            if playersGuesses[currentRow].count == 5{
+                currentRow += 1
+            }
+     
+        case 27:
+            playersGuesses[currentRow] = String(playersGuesses[currentRow].dropLast())
         default:
             break
         }
@@ -49,8 +49,9 @@ class WordGridViewController: UIViewController {
     func lettersGuessed(letter: String){
         guard playersGuesses[currentRow].count < 5 else {return}
         playersGuesses[currentRow].append(letter)
-        
     }
+    
+    
  
 }//end of class
 
