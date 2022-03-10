@@ -15,6 +15,7 @@ class WordTableViewCell: UITableViewCell {
     @IBOutlet weak var fourthLetter: UILabel!
     @IBOutlet weak var fifthLetter: UILabel!
     
+    //array of background colors
     
     //landing pad for to grab letters
     var userWord: String = ""{
@@ -23,10 +24,12 @@ class WordTableViewCell: UITableViewCell {
         }
     }
     
+    var colors: [UIColor] = []
     
     func updateViews(){
         let wordArray = Array(userWord)
-    
+       // print("inside update views", colors)
+        
         switch wordArray.count{
             
         case 1:
@@ -52,19 +55,29 @@ class WordTableViewCell: UITableViewCell {
             
         default:
             break
-
+            
         }
         
+        firstLetter.backgroundColor = colors[0]
+        secondLetter.backgroundColor = colors[1]
+        thirdLetter.backgroundColor = colors[2]
+        fourthLetter.backgroundColor = colors[3]
+        fifthLetter.backgroundColor = colors[4]
+   
     }
     
-        override func prepareForReuse() {
-            super.prepareForReuse()
-            firstLetter.text = ""
-            secondLetter.text = ""
-            thirdLetter.text = ""
-            fourthLetter.text = ""
-            fifthLetter.text = ""
-        }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        firstLetter.text = ""
+        secondLetter.text = ""
+        thirdLetter.text = ""
+        fourthLetter.text = ""
+        fifthLetter.text = ""
+    }
+    
+    
+    
+    
     
 }//end of class
 
