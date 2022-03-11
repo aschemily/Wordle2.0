@@ -12,6 +12,10 @@ class WordGridViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var keyBoardButtons: [UIButton]!
     
+    @IBOutlet weak var congratsLabel: UILabel!
+    
+    
+    
     var playersGuesses: [String] = Array(repeating: "", count: 6)
     var currentRow = 0
     
@@ -28,6 +32,7 @@ class WordGridViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         fetchAllWords()
+        congratsLabel.isHidden = true
         
     }
     
@@ -59,28 +64,12 @@ class WordGridViewController: UIViewController {
         guard playersGuesses[currentRow].count < 5 else {return}
         playersGuesses[currentRow].append(letter)
     }
-    
-    func changeKeyBoard(){
-        //  var keyBoardArray: [String] = []
-        var playersGuess = Array(playersGuesses[currentRow].lowercased())
-        var wordArray = Array(wordOfTheDay)
-        
-        for btn in keyBoardButtons{
-            guard let letter = btn.titleLabel?.text else {return}
-            
-        }
-        
-        
-        print(playersGuess)
-        
-        
-        print(wordOfTheDay, "is word of the day")
-    }
+ 
     
     func compareWords(){
         
         if playersGuesses[currentRow].lowercased() == wordOfTheDay{
-            colorsArray[currentRow] = [.green, .green, .green, .green, .green]
+            colorsArray[currentRow] = [#colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1)]
         }
         
         let splitPlayersGuess = Array(playersGuesses[currentRow].lowercased())
@@ -90,38 +79,70 @@ class WordGridViewController: UIViewController {
         for btn in keyBoardButtons{
             guard let btnLetter = btn.titleLabel?.text else {return}
          //   print(btnLetter)
-            
-//            if !wordOfTheDay.contains(btnLetter){
-//                btn.backgroundColor = .red
-//            }
+
           
             for (i, letter) in splitPlayersGuess.enumerated(){
-                
-                // print(index, letter)
-                
                 if(i == 0 && letter == splitWordOfTheDay[0]) || (i == 1 && letter == splitWordOfTheDay[1]) || (i == 2 && letter == splitWordOfTheDay[2]) || (i == 3 && letter == splitWordOfTheDay[3]) || (i == 4 && letter == splitWordOfTheDay[4]){
                     
                     if btnLetter.lowercased() == String(letter){
-                        btn.backgroundColor = .green
+                        btn.backgroundColor = #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1)
+                      
                     }
                     
-                    colorsArray[currentRow][i] = .green
+                    colorsArray[currentRow][i] = #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1)
                    // print(btnLetter, letter)
                     
                 }else if(wordOfTheDay.contains(letter)){
                     if btnLetter.lowercased() == String(letter){
-                        btn.backgroundColor = .orange
+                        btn.backgroundColor =  #colorLiteral(red: 0.8781039119, green: 0.7762021422, blue: 0.2915796041, alpha: 1)
+                      
                     }
                     
-                    colorsArray[currentRow][i] = .orange
+                    colorsArray[currentRow][i] = #colorLiteral(red: 0.8781039119, green: 0.7762021422, blue: 0.2915796041, alpha: 1)
                 }else{
                    // btn.backgroundColor = .gray
-                    colorsArray[currentRow][i] = .gray
+                    colorsArray[currentRow][i] = #colorLiteral(red: 0.4011883438, green: 0.4024074376, blue: 0.4174343646, alpha: 1)
                     
                 }
             }
         }
         
+    }
+    
+    func showLabel(){
+        //print(playersGuesses[currentRow], currentRow)
+        print(wordOfTheDay)
+        var playersGuess = playersGuesses[currentRow].lowercased()
+        
+        switch (wordOfTheDay == playersGuess, currentRow){
+        case (true, 0):
+            print("YAY")
+            congratsLabel.isHidden = false
+            congratsLabel.text = "AMAZING"
+        case (true, 1):
+            print("yes")
+            congratsLabel.isHidden = false
+            congratsLabel.text = "Great!"
+        case (true, 2):
+            congratsLabel.isHidden = false
+            congratsLabel.text = "Good Work!"
+        case (true, 3):
+            congratsLabel.isHidden = false
+            congratsLabel.text = "close one!"
+        case (true, 4):
+            congratsLabel.isHidden = false
+            congratsLabel.text = "nail biter"
+        case (true, 4):
+            congratsLabel.isHidden = false
+            congratsLabel.text = "PHEW!"
+
+        default:
+            break
+        }
+        
+      //  tableView.reloadData()
+            
+            
     }
     
     
@@ -139,7 +160,7 @@ class WordGridViewController: UIViewController {
         case 19:
             if playersGuesses[currentRow].count == 5{
                 compareWords()
-                changeKeyBoard()
+                showLabel()
                 currentRow += 1
             }
             
