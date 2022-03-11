@@ -560,6 +560,32 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="zaM-D5-Oj8" id="6nI-Mq-AgB"/>
+                        <outletCollection property="keyBoardButtons" destination="csG-s7-9Do" collectionClass="NSMutableArray" id="umC-Ei-2L4"/>
+                        <outletCollection property="keyBoardButtons" destination="hX5-mK-dKC" collectionClass="NSMutableArray" id="BaK-FK-FKY"/>
+                        <outletCollection property="keyBoardButtons" destination="U7w-Vw-6ze" collectionClass="NSMutableArray" id="UyW-4l-lj6"/>
+                        <outletCollection property="keyBoardButtons" destination="09c-uR-ZNX" collectionClass="NSMutableArray" id="sKu-JV-C0y"/>
+                        <outletCollection property="keyBoardButtons" destination="BM3-B0-2fK" collectionClass="NSMutableArray" id="Tx0-m2-aw7"/>
+                        <outletCollection property="keyBoardButtons" destination="Xfs-Au-v5g" collectionClass="NSMutableArray" id="0fZ-yt-1n5"/>
+                        <outletCollection property="keyBoardButtons" destination="FDY-B1-Niu" collectionClass="NSMutableArray" id="zLD-uJ-XVA"/>
+                        <outletCollection property="keyBoardButtons" destination="cdN-Xt-QbP" collectionClass="NSMutableArray" id="csk-iF-wzY"/>
+                        <outletCollection property="keyBoardButtons" destination="ws2-yx-F6b" collectionClass="NSMutableArray" id="bed-pI-Ooy"/>
+                        <outletCollection property="keyBoardButtons" destination="UnO-x9-5wJ" collectionClass="NSMutableArray" id="pP6-gw-99M"/>
+                        <outletCollection property="keyBoardButtons" destination="MSK-hG-hpR" collectionClass="NSMutableArray" id="489-hq-kux"/>
+                        <outletCollection property="keyBoardButtons" destination="4j3-Kg-iqx" collectionClass="NSMutableArray" id="AjT-XU-P61"/>
+                        <outletCollection property="keyBoardButtons" destination="2Ly-Sc-iJJ" collectionClass="NSMutableArray" id="9IW-yH-dtf"/>
+                        <outletCollection property="keyBoardButtons" destination="dKD-fK-wWf" collectionClass="NSMutableArray" id="K4O-nM-0GY"/>
+                        <outletCollection property="keyBoardButtons" destination="PBv-X4-bzA" collectionClass="NSMutableArray" id="sbu-Gl-oce"/>
+                        <outletCollection property="keyBoardButtons" destination="Qm6-bQ-Fan" collectionClass="NSMutableArray" id="bcF-XY-6ss"/>
+                        <outletCollection property="keyBoardButtons" destination="qUO-4b-aUZ" collectionClass="NSMutableArray" id="bDw-FE-hGf"/>
+                        <outletCollection property="keyBoardButtons" destination="9eA-Vc-1UU" collectionClass="NSMutableArray" id="psL-RS-Xa0"/>
+                        <outletCollection property="keyBoardButtons" destination="VxQ-0H-sWA" collectionClass="NSMutableArray" id="KAn-kN-Fhb"/>
+                        <outletCollection property="keyBoardButtons" destination="Lmm-gR-asj" collectionClass="NSMutableArray" id="pzz-cY-oy8"/>
+                        <outletCollection property="keyBoardButtons" destination="2YP-Hp-aUL" collectionClass="NSMutableArray" id="41l-if-JpN"/>
+                        <outletCollection property="keyBoardButtons" destination="Jxt-sE-JKl" collectionClass="NSMutableArray" id="WsD-yb-py3"/>
+                        <outletCollection property="keyBoardButtons" destination="3Vi-iI-VU8" collectionClass="NSMutableArray" id="7mp-GR-fxR"/>
+                        <outletCollection property="keyBoardButtons" destination="pRf-Iy-xZR" collectionClass="NSMutableArray" id="wE5-e7-xhk"/>
+                        <outletCollection property="keyBoardButtons" destination="gmR-Gz-XoL" collectionClass="NSMutableArray" id="pJN-Gi-k0R"/>
+                        <outletCollection property="keyBoardButtons" destination="Bzr-JO-jdc" collectionClass="NSMutableArray" id="tgh-01-4hA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oHC-sW-NcW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
