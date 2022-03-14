@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 class WordController{
     static let shared = WordController()
@@ -15,6 +16,7 @@ class WordController{
     static var filteredWords: [String] = []
     //url
     //https://random-word-api.herokuapp.com/all
+    let ref = Database.database().reference()
     
     static let url = URL(string:"https://random-word-api.herokuapp.com/all")
     
@@ -56,8 +58,8 @@ class WordController{
   
     }
     
-    //
-    
-    
-
+//    func saveFilteredArray(){
+//        ref.child("fileredWords").setValue(WordController.filteredWords)
+//    }
+   
 }//end of class

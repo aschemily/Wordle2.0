@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		323A6AD427DFB2590013E2FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 323A6AD327DFB2590013E2FE /* GoogleService-Info.plist */; };
+		323A6AD727DFB4600013E2FE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 323A6AD627DFB4600013E2FE /* FirebaseAnalytics */; };
+		323A6AD927DFB4600013E2FE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 323A6AD827DFB4600013E2FE /* FirebaseDatabase */; };
+		323A6ADA27DFC9C80013E2FE /* WordGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB50C27D6A82400D22E3C /* WordGridViewController.swift */; };
 		32BCB4F127D2811000D22E3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB4F027D2811000D22E3C /* AppDelegate.swift */; };
 		32BCB4F327D2811000D22E3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB4F227D2811000D22E3C /* SceneDelegate.swift */; };
 		32BCB4F827D2811000D22E3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BCB4F627D2811000D22E3C /* Main.storyboard */; };
 		32BCB4FA27D2811200D22E3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32BCB4F927D2811200D22E3C /* Assets.xcassets */; };
 		32BCB4FD27D2811200D22E3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BCB4FB27D2811200D22E3C /* LaunchScreen.storyboard */; };
-		32BCB50D27D6A82400D22E3C /* WordGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB50C27D6A82400D22E3C /* WordGridViewController.swift */; };
 		32BCB51727D7C3AC00D22E3C /* WordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB51627D7C3AC00D22E3C /* WordTableViewCell.swift */; };
 		32BCB51B27D7CA0500D22E3C /* CustomUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB51A27D7CA0500D22E3C /* CustomUI.swift */; };
 		32BCB51D27D7F48300D22E3C /* WordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB51C27D7F48300D22E3C /* WordController.swift */; };
@@ -20,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		323A6AD327DFB2590013E2FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		32BCB4ED27D2811000D22E3C /* Wordle2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordle2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BCB4F027D2811000D22E3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32BCB4F227D2811000D22E3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				323A6AD927DFB4600013E2FE /* FirebaseDatabase in Frameworks */,
+				323A6AD727DFB4600013E2FE /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +86,7 @@
 				32BCB4F227D2811000D22E3C /* SceneDelegate.swift */,
 				32BCB4F927D2811200D22E3C /* Assets.xcassets */,
 				32BCB4FE27D2811200D22E3C /* Info.plist */,
+				323A6AD327DFB2590013E2FE /* GoogleService-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -143,6 +150,10 @@
 			dependencies = (
 			);
 			name = Wordle2.0;
+			packageProductDependencies = (
+				323A6AD627DFB4600013E2FE /* FirebaseAnalytics */,
+				323A6AD827DFB4600013E2FE /* FirebaseDatabase */,
+			);
 			productName = Wordle2.0;
 			productReference = 32BCB4ED27D2811000D22E3C /* Wordle2.0.app */;
 			productType = "com.apple.product-type.application";
@@ -171,6 +182,9 @@
 				Base,
 			);
 			mainGroup = 32BCB4E427D2811000D22E3C;
+			packageReferences = (
+				323A6AD527DFB4600013E2FE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 32BCB4EE27D2811000D22E3C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -188,6 +202,7 @@
 				32BCB4FD27D2811200D22E3C /* LaunchScreen.storyboard in Resources */,
 				32BCB4FA27D2811200D22E3C /* Assets.xcassets in Resources */,
 				32BCB4F827D2811000D22E3C /* Main.storyboard in Resources */,
+				323A6AD427DFB2590013E2FE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,10 +213,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				323A6ADA27DFC9C80013E2FE /* WordGridViewController.swift in Sources */,
 				32BCB4F127D2811000D22E3C /* AppDelegate.swift in Sources */,
 				32EBA4FF27DA4D8D00252983 /* NetworkError.swift in Sources */,
 				32BCB51B27D7CA0500D22E3C /* CustomUI.swift in Sources */,
-				32BCB50D27D6A82400D22E3C /* WordGridViewController.swift in Sources */,
 				32BCB4F327D2811000D22E3C /* SceneDelegate.swift in Sources */,
 				32BCB51D27D7F48300D22E3C /* WordController.swift in Sources */,
 				32BCB51727D7C3AC00D22E3C /* WordTableViewCell.swift in Sources */,
@@ -422,6 +437,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		323A6AD527DFB4600013E2FE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		323A6AD627DFB4600013E2FE /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 323A6AD527DFB4600013E2FE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		323A6AD827DFB4600013E2FE /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 323A6AD527DFB4600013E2FE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 32BCB4E527D2811000D22E3C /* Project object */;
 }
