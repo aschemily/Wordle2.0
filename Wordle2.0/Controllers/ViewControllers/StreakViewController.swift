@@ -9,9 +9,10 @@ import UIKit
 
 class StreakViewController: UIViewController {
 
-    
     @IBOutlet weak var timerLabel: UILabel!
     var secondsRemaining = 30
+    
+   weak var delegate: ClearFireBaseDelegate?
     
     
     override func viewDidLoad() {
@@ -34,7 +35,15 @@ class StreakViewController: UIViewController {
             }
         }
     }
-
+    
+    
+    @IBAction func continueBtnPressed(_ sender: Any) {
+        delegate?.clearDB()
+        print("continue button pressed")
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
     /*
     // MARK: - Navigation
 

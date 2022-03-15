@@ -8,7 +8,11 @@
 import UIKit
 import FirebaseDatabase
 
-class WordGridViewController: UIViewController {
+protocol ClearFireBaseDelegate: AnyObject{
+    func clearDB()
+}
+
+class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var keyBoardButtons: [UIButton]!
@@ -103,16 +107,23 @@ class WordGridViewController: UIViewController {
       //clear local
         playersGuesses = Array(repeating: "", count: 6)
         wordOfTheDay = ""
-
+        colorsArray = Array(repeating: Array(repeating: .white, count: 5), count: 6)
         ref.child("wordOfTheDay").removeValue()
         ref.child("usersGuesses").removeValue()
+        congratsLabel.isHidden = true
+        keyBoardButtons.forEach({ $0.backgroundColor = #colorLiteral(red: 0.8744233251, green: 0.8745703101, blue: 0.8744040132, alpha: 1) })
+        currentRow = 0
+        fetchAllWords()
+        tableView.reloadData()
     }
     
     func showStreakVC(){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Streak", bundle:nil)
         let streakVC = storyBoard.instantiateViewController(withIdentifier: "streakID") as! StreakViewController
-        self.present(streakVC, animated:true, completion:nil)
+        streakVC.delegate = self
         
+        //add timer to present
+        self.present(streakVC, animated:true, completion:nil)
         
     }
   
