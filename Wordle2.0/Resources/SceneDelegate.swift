@@ -17,6 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.instantiateStreakView(notification:)), name: Notification.Name("StreakNotification"), object: nil)
+//
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.removeStreakView(notification:)), name: Notification.Name("RemoveStreakNotification"), object: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -47,6 +50,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+//    @objc func instantiateStreakView(notification: Notification){
+//        guard let window = window else {return}
+//        let rootVC = window.rootViewController
+//        let streakStoryBoard = UIStoryboard(name: "Streak", bundle: nil)
+//        let streakVC = streakStoryBoard.instantiateViewController(withIdentifier: "streakID")
+//        streakVC.modalPresentationStyle = .automatic
+//        rootVC?.present(streakVC, animated: true, completion: nil)
+//        window.makeKeyAndVisible()
+//    }
+    
+//    @objc func removeStreakView(notification: Notification){
+//        guard let window = window else {return}
+//        let rootVC = window.rootViewController
+//        rootVC?.dismiss(animated: true, completion: nil)
+//    }
 
 }
 

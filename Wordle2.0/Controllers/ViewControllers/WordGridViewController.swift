@@ -17,6 +17,8 @@ class WordGridViewController: UIViewController {
     
     let ref = Database.database().reference()
     
+    var window: UIWindow?
+    
     var playersGuesses: [String] = Array(repeating: "", count: 6)
     var currentRow = 0
     
@@ -38,6 +40,8 @@ class WordGridViewController: UIViewController {
         getWordFromDB()
       
         congratsLabel.isHidden = true
+        //initialize notification center and provide function and provide identification string
+        
         
     }
     
@@ -104,8 +108,14 @@ class WordGridViewController: UIViewController {
         ref.child("usersGuesses").removeValue()
     }
     
-    //create alert that starts new game
-    
+    func showStreakVC(){
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Streak", bundle:nil)
+        let streakVC = storyBoard.instantiateViewController(withIdentifier: "streakID") as! StreakViewController
+        self.present(streakVC, animated:true, completion:nil)
+        
+        
+    }
+  
     
     func lettersGuessed(letter: String){
         guard playersGuesses[currentRow].count < 5 else {return}
@@ -180,28 +190,51 @@ class WordGridViewController: UIViewController {
             print("YAY")
             congratsLabel.isHidden = false
             congratsLabel.text = "AMAZING"
+//            NotificationCenter.default.post(name: Notification.Name("StreakNotification"), object: nil)
+            showStreakVC()
         case (true, 1):
             print("yes")
             congratsLabel.isHidden = false
             congratsLabel.text = "Great!"
+//            NotificationCenter.default.post(name: Notification.Name("StreakNotification"), object: nil)
+            showStreakVC()
         case (true, 2):
             congratsLabel.isHidden = false
             congratsLabel.text = "Good Work!"
+//            NotificationCenter.default.post(name: Notification.Name("StreakNotification"), object: nil)
+            showStreakVC()
         case (true, 3):
             congratsLabel.isHidden = false
             congratsLabel.text = "close one!"
+            showStreakVC()
         case (true, 4):
             congratsLabel.isHidden = false
             congratsLabel.text = "nail biter"
-        case (true, 4):
+            showStreakVC()
+        case (true, 5):
             congratsLabel.isHidden = false
             congratsLabel.text = "PHEW!"
+            showStreakVC()
 
+        case(false, 5):
+            showStreakVC()
         default:
             break
         }
         
     }
+    
+//    func instantiateStreakView(window: UIWindow?){
+//        guard let window = window else {return}
+//        let rootVC = window.rootViewController
+//        let streakStoryBoard = UIStoryboard(name: "Streak", bundle: nil)
+//        let streakVC = streakStoryBoard.instantiateViewController(withIdentifier: "streakID")
+//        streakVC.modalPresentationStyle = .automatic
+//        rootVC?.present(streakVC, animated: true, completion: nil)
+//        window.makeKeyAndVisible()
+//    }
+    
+    
     
     
     
@@ -220,6 +253,7 @@ class WordGridViewController: UIViewController {
                 compareWords()
                 showLabel()
                 saveUsersGuesses()
+//                displayVC()
                 currentRow += 1
             }
     
