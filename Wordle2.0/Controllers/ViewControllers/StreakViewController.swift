@@ -17,24 +17,25 @@ class StreakViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startTimer(seconds: secondsRemaining)
-        // Do any additional setup after loading the view.
+//        startTimer(seconds: secondsRemaining)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
     }
     
-    func startTimer(seconds: Int){
-        var secondsRemaining = seconds
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
-            if secondsRemaining > 0{
-                DispatchQueue.main.async {
-                    self.timerLabel.text = String(secondsRemaining)
-                }
-                secondsRemaining -= 1
-            }else{
-                Timer.invalidate()
-                //Notifcation: call upon notification broadcast with correct identifier string in order to clear db
-            }
-        }
-    }
+//    func startTimer(seconds: Int){
+//        var secondsRemaining = seconds
+//        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
+//            if secondsRemaining > 0{
+//                DispatchQueue.main.async {
+//                    self.timerLabel.text = String(secondsRemaining)
+//                }
+//                secondsRemaining -= 1
+//            }else{
+//                Timer.invalidate()
+//                //Notifcation: call upon notification broadcast with correct identifier string in order to clear db
+//            }
+//        }
+//    }
     
     
     @IBAction func continueBtnPressed(_ sender: Any) {

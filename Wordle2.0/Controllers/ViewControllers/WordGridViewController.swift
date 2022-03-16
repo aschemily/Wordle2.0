@@ -192,19 +192,15 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     }
     
     func showLabel(){
-        //print(playersGuesses[currentRow], currentRow)
-      //  print(wordOfTheDay)
         var playersGuess = playersGuesses[currentRow].lowercased()
         
         switch (wordOfTheDay == playersGuess, currentRow){
         case (true, 0):
-            print("YAY")
+          
             congratsLabel.isHidden = false
-            congratsLabel.text = "AMAZING"
-//            NotificationCenter.default.post(name: Notification.Name("StreakNotification"), object: nil)
+            congratsLabel.text = "AMAZING!"
             showStreakVC()
         case (true, 1):
-            print("yes")
             congratsLabel.isHidden = false
             congratsLabel.text = "Great!"
 //            NotificationCenter.default.post(name: Notification.Name("StreakNotification"), object: nil)
@@ -216,11 +212,11 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
             showStreakVC()
         case (true, 3):
             congratsLabel.isHidden = false
-            congratsLabel.text = "close one!"
+            congratsLabel.text = "Close One!"
             showStreakVC()
         case (true, 4):
             congratsLabel.isHidden = false
-            congratsLabel.text = "nail biter"
+            congratsLabel.text = "Nail Biter!"
             showStreakVC()
         case (true, 5):
             congratsLabel.isHidden = false
