@@ -73,7 +73,6 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1sF-XP-fl9"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qIL-uy-5aG" firstAttribute="height" secondItem="Dn8-y1-zD2" secondAttribute="height" multiplier="0.521205" id="2xa-RZ-BEo"/>
                             <constraint firstItem="qIL-uy-5aG" firstAttribute="centerX" secondItem="1sF-XP-fl9" secondAttribute="centerX" id="cML-ef-0MU"/>

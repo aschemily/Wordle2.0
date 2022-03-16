@@ -12,14 +12,25 @@ class StreakViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     var secondsRemaining = 30
     
+    
    weak var delegate: ClearFireBaseDelegate?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        startTimer(seconds: secondsRemaining)
+
         view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+       
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isBeingDismissed {
+            // TODO: Do your stuff here.
+            delegate?.clearDB()
+          //  print("user swiping away")
+        }
     }
     
 //    func startTimer(seconds: Int){
@@ -37,15 +48,12 @@ class StreakViewController: UIViewController {
 //        }
 //    }
     
-    //view did dissappear clear db
-    
-    
+
     @IBAction func continueBtnPressed(_ sender: Any) {
         //dpn't need below as long as view did dissappear 
-        delegate?.clearDB()
+       // delegate?.clearDB()
         print("continue button pressed")
         self.dismiss(animated: true, completion: nil)
-        
     }
     
     /*
