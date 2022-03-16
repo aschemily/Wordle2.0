@@ -553,6 +553,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1l-du-ZRb">
+                                <rect key="frame" x="149" y="43" width="107" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="M0v-W9-pgk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -568,6 +576,7 @@
                     </view>
                     <connections>
                         <outlet property="congratsLabel" destination="Sen-bf-ayY" id="dgm-ji-KM8"/>
+                        <outlet property="invalidGuessLabel" destination="K1l-du-ZRb" id="2h7-iZ-USn"/>
                         <outlet property="tableView" destination="zaM-D5-Oj8" id="6nI-Mq-AgB"/>
                         <outletCollection property="keyBoardButtons" destination="csG-s7-9Do" collectionClass="NSMutableArray" id="umC-Ei-2L4"/>
                         <outletCollection property="keyBoardButtons" destination="hX5-mK-dKC" collectionClass="NSMutableArray" id="BaK-FK-FKY"/>
@@ -609,6 +618,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

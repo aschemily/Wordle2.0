@@ -18,6 +18,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     @IBOutlet var keyBoardButtons: [UIButton]!
     
     @IBOutlet weak var congratsLabel: UILabel!
+    @IBOutlet weak var invalidGuessLabel: UILabel!
     
     let ref = Database.database().reference()
     
@@ -32,7 +33,6 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     //    [[.yellow, .gray, .green, .blue, .red],[.brown, .red, .blue, .cyan, .yellow], [.systemIndigo, .purple, .orange, .systemMint, .systemPink],[.yellow, .gray, .green, .blue, .red],[.brown, .red, .blue, .cyan, .yellow], [.systemIndigo, .purple, .orange, .systemMint, .systemPink]]
     
     var wordOfTheDay: String = ""
-  //  var wordOfTheDay = "tired"
     
     
     override func viewDidLoad() {
@@ -40,9 +40,9 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         
         tableView.delegate = self
         tableView.dataSource = self
-      //  fetchAllWords()
+       // fetchAllWords()
         getWordFromDB()
-      
+        invalidGuessLabel.isHidden = true
         congratsLabel.isHidden = true
         //initialize notification center and provide function and provide identification string
         
@@ -57,8 +57,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
             case .success(let response):
                 //call getNewWord()
                 //success only returning one word
-              
-                self.getNewWord()
+               self.checkGameInProgress()
                 print("response is?", response)
             case .failure(let error):
                 print("🔴error in \(#function), \(error.localizedDescription), \(error)🔴")
@@ -68,7 +67,8 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     
     func checkGameInProgress(){
         if wordOfTheDay.isEmpty{
-            fetchAllWords()
+          //  fetchAllWords()
+            getNewWord()
         }
     }
     
@@ -84,10 +84,10 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     
     func getWordFromDB(){
         ref.child("wordOfTheDay").observeSingleEvent(of: .value) { snapshot in
-            print("what is snapshot \(snapshot)")
-            
+          
             if let word = snapshot.value as? String {
                 self.wordOfTheDay = word
+                self.fetchAllWords()
                 self.ref.child("usersGuesses").observeSingleEvent(of: .value) { snapshot in
                     guard let userGuessesFromDB = snapshot.value as? [String] else {return}
                     self.playersGuesses = userGuessesFromDB
@@ -113,7 +113,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         congratsLabel.isHidden = true
         keyBoardButtons.forEach({ $0.backgroundColor = #colorLiteral(red: 0.8744233251, green: 0.8745703101, blue: 0.8744040132, alpha: 1) })
         currentRow = 0
-        fetchAllWords()
+        getNewWord()
         tableView.reloadData()
     }
     
@@ -153,6 +153,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     func compareWords(){
         print("word of the day \(wordOfTheDay)")
         
+        
         if playersGuesses[currentRow].lowercased() == wordOfTheDay{
             colorsArray[currentRow] = [#colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1)]
         }
@@ -170,7 +171,6 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
 
                     if btnLetter.lowercased() == String(letter){
                         btn.backgroundColor = #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1)
-
                     }
 
                     colorsArray[currentRow][i] = #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1)
@@ -231,6 +231,13 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         
     }
     
+    func isValidGuess()-> Bool{
+     //   print(WordController.filteredWords.count)
+        
+       return WordController.filteredWords.contains(playersGuesses[currentRow].lowercased())
+        
+    }
+    
 //    func instantiateStreakView(window: UIWindow?){
 //        guard let window = window else {return}
 //        let rootVC = window.rootViewController
@@ -256,12 +263,18 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
             lettersGuessed(letter: letter)
             
         case 19:
-            if playersGuesses[currentRow].count == 5{
+           // invalidGuess()
+            if playersGuesses[currentRow].count == 5 {
+                guard isValidGuess() == true else {
+                    invalidGuessLabel.text = "INVALID GUESS"
+                    invalidGuessLabel.isHidden = false
+                    return
+                }
                 compareWords()
+                invalidGuessLabel.isHidden = true
                 showLabel()
                 saveUsersGuesses()
-//                displayVC()
-                currentRow += 1
+               currentRow += 1
             }
     
         case 27:
@@ -272,6 +285,8 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         }
         tableView.reloadData()
     }
+    
+    
     
     
     

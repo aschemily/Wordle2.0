@@ -37,8 +37,11 @@ class StreakViewController: UIViewController {
 //        }
 //    }
     
+    //view did dissappear clear db
+    
     
     @IBAction func continueBtnPressed(_ sender: Any) {
+        //dpn't need below as long as view did dissappear 
         delegate?.clearDB()
         print("continue button pressed")
         self.dismiss(animated: true, completion: nil)
