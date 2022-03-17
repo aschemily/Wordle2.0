@@ -18,10 +18,7 @@ class StreakViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-       
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,9 +47,6 @@ class StreakViewController: UIViewController {
     
 
     @IBAction func continueBtnPressed(_ sender: Any) {
-        //dpn't need below as long as view did dissappear 
-       // delegate?.clearDB()
-        print("continue button pressed")
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -67,7 +67,6 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     
     func checkGameInProgress(){
         if wordOfTheDay.isEmpty{
-          //  fetchAllWords()
             getNewWord()
         }
     }
@@ -152,10 +151,13 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     
     func compareWords(){
         print("word of the day \(wordOfTheDay)")
-        
+        //tunas
+        //nanny
+        //if the users guesses has multiple characters and the character is in the word only once show that once not all
         
         if playersGuesses[currentRow].lowercased() == wordOfTheDay{
             colorsArray[currentRow] = [#colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1)]
+            
         }
 
         let splitPlayersGuess = Array(playersGuesses[currentRow].lowercased())
@@ -174,8 +176,11 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
                     }
 
                     colorsArray[currentRow][i] = #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1)
+                   // print(i, letter, splitPlayersGuess)
 
+                    //if the letter only has one character that the user guessed
                 }else if(wordOfTheDay.contains(letter)){
+                    print(letter)
                     if btnLetter.lowercased() == String(letter){
                         btn.backgroundColor =  #colorLiteral(red: 0.8781039119, green: 0.7762021422, blue: 0.2915796041, alpha: 1)
                     }
@@ -190,6 +195,8 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         }
         
     }
+    
+    
     
     func showLabel(){
         var playersGuess = playersGuesses[currentRow].lowercased()
@@ -247,11 +254,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
 //        rootVC?.present(streakVC, animated: true, completion: nil)
 //        window.makeKeyAndVisible()
 //    }
-    
-    
-    
-    
-    
+ 
     
     //MARK: ACTIONS
     @IBAction func keyBoardTapped(_ sender: UIButton) {

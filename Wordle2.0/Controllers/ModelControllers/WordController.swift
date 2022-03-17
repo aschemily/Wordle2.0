@@ -58,8 +58,5 @@ class WordController{
   
     }
     
-//    func saveFilteredArray(){
-//        ref.child("fileredWords").setValue(WordController.filteredWords)
-//    }
    
 }//end of class

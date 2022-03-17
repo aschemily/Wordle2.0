@@ -19,6 +19,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qIL-uy-5aG">
                                 <rect key="frame" x="23.5" y="129" width="367" height="467"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KW0-td-hPO">
+                                        <rect key="frame" x="0.0" y="35" width="367" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="65" id="OSr-Cz-mdE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUh-FC-KTo">
                                         <rect key="frame" x="7.5" y="425" width="90.5" height="32"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
@@ -46,13 +55,11 @@
                                         <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KW0-td-hPO">
-                                        <rect key="frame" x="0.0" y="35" width="367" height="65"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="65" id="OSr-Cz-mdE"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Played" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTa-L7-FCa">
+                                        <rect key="frame" x="8" y="151" width="71" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                                        <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -73,6 +80,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1sF-XP-fl9"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qIL-uy-5aG" firstAttribute="height" secondItem="Dn8-y1-zD2" secondAttribute="height" multiplier="0.521205" id="2xa-RZ-BEo"/>
                             <constraint firstItem="qIL-uy-5aG" firstAttribute="centerX" secondItem="1sF-XP-fl9" secondAttribute="centerX" id="cML-ef-0MU"/>
