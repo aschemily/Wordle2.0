@@ -34,10 +34,10 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     
     var wordOfTheDay: String = ""
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       // showInstructionsVC()
         tableView.delegate = self
         tableView.dataSource = self
        // fetchAllWords()
@@ -125,6 +125,13 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         self.present(streakVC, animated:true, completion:nil)
         
     }
+    
+    func showInstructionsVC(){
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Instructions", bundle: nil)
+        let instructionsVC = storyBoard.instantiateViewController(withIdentifier: "instructionsID") as! InstructionsViewController
+        
+        self.present(instructionsVC, animated: true, completion: nil)
+    }
   
     
     func lettersGuessed(letter: String){
@@ -147,51 +154,62 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         }
         tableView.reloadData()
     }
- 
-    
+   
     func compareWords(){
         print("word of the day \(wordOfTheDay)")
-        //tunas
-        //nanny
-        //if the users guesses has multiple characters and the character is in the word only once show that once not all
+        //if word of the day has repeating char increase count
+        //compare count to letters guess
+        //if letters guessed
+        
         
         if playersGuesses[currentRow].lowercased() == wordOfTheDay{
             colorsArray[currentRow] = [#colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1), #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1)]
             
         }
 
-        let splitPlayersGuess = Array(playersGuesses[currentRow].lowercased())
-
-        let splitWordOfTheDay = Array(wordOfTheDay)
-
+      
         for btn in keyBoardButtons{
             guard let btnLetter = btn.titleLabel?.text else {return}
-
-
+            var splitPlayersGuess = Array(playersGuesses[currentRow].lowercased())
+            var splitWordOfTheDay = Array(wordOfTheDay)
+           
+            
             for (i, letter) in splitPlayersGuess.enumerated(){
-                if(i == 0 && letter == splitWordOfTheDay[0]) || (i == 1 && letter == splitWordOfTheDay[1]) || (i == 2 && letter == splitWordOfTheDay[2]) || (i == 3 && letter == splitWordOfTheDay[3]) || (i == 4 && letter == splitWordOfTheDay[4]){
-
+                if letter == splitWordOfTheDay[i]{
+               
+                   splitPlayersGuess[i] = "#" //["n", "a", "n", "#", "y"]
+                    
+                    splitWordOfTheDay[i] = "!"//["j", "n", "a", "!", "a"]
+               
                     if btnLetter.lowercased() == String(letter){
                         btn.backgroundColor = #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1)
                     }
 
                     colorsArray[currentRow][i] = #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1)
-                   // print(i, letter, splitPlayersGuess)
-
-                    //if the letter only has one character that the user guessed
-                }else if(wordOfTheDay.contains(letter)){
-                    print(letter)
-                    if btnLetter.lowercased() == String(letter){
+                  
+                }
+            }
+            for (i, letter) in splitPlayersGuess.enumerated(){
+                if splitWordOfTheDay.contains(letter){
+                    guard let index = splitWordOfTheDay.firstIndex(of: letter) else {return}
+               
+                   splitWordOfTheDay[index] = "+"
+                    
+                    if btnLetter.lowercased() == String(letter) && btn.backgroundColor != #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1){
                         btn.backgroundColor =  #colorLiteral(red: 0.8781039119, green: 0.7762021422, blue: 0.2915796041, alpha: 1)
                     }
 
                     colorsArray[currentRow][i] = #colorLiteral(red: 0.8781039119, green: 0.7762021422, blue: 0.2915796041, alpha: 1)
                 }else{
-
-                    colorsArray[currentRow][i] = #colorLiteral(red: 0.4011883438, green: 0.4024074376, blue: 0.4174343646, alpha: 1)
+                    if colorsArray[currentRow][i] != #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1) {
+                        colorsArray[currentRow][i] = #colorLiteral(red: 0.4011883438, green: 0.4024074376, blue: 0.4174343646, alpha: 1)
+                    }
 
                 }
             }
+            print("\n")
+            print(splitWordOfTheDay)
+            print(splitPlayersGuess)
         }
         
     }
@@ -254,7 +272,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
 //        rootVC?.present(streakVC, animated: true, completion: nil)
 //        window.makeKeyAndVisible()
 //    }
- 
+
     
     //MARK: ACTIONS
     @IBAction func keyBoardTapped(_ sender: UIButton) {

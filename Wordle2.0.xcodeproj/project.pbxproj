@@ -13,6 +13,8 @@
 		323A6ADA27DFC9C80013E2FE /* WordGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB50C27D6A82400D22E3C /* WordGridViewController.swift */; };
 		323A6ADC27E0DAF40013E2FE /* StreakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323A6ADB27E0DAF40013E2FE /* StreakViewController.swift */; };
 		323A6ADF27E0DE5A0013E2FE /* Streak.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 323A6ADD27E0DE5A0013E2FE /* Streak.storyboard */; };
+		323A6AE227E3F4890013E2FE /* Instructions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 323A6AE027E3F4890013E2FE /* Instructions.storyboard */; };
+		323A6AE427E3F5110013E2FE /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323A6AE327E3F5110013E2FE /* InstructionsViewController.swift */; };
 		32BCB4F127D2811000D22E3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB4F027D2811000D22E3C /* AppDelegate.swift */; };
 		32BCB4F327D2811000D22E3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCB4F227D2811000D22E3C /* SceneDelegate.swift */; };
 		32BCB4F827D2811000D22E3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BCB4F627D2811000D22E3C /* Main.storyboard */; };
@@ -28,6 +30,8 @@
 		323A6AD327DFB2590013E2FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		323A6ADB27E0DAF40013E2FE /* StreakViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakViewController.swift; sourceTree = "<group>"; };
 		323A6ADE27E0DE5A0013E2FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Wordle2.0/Storyboards/Base.lproj/Streak.storyboard; sourceTree = "<group>"; };
+		323A6AE127E3F4890013E2FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Wordle2.0/Storyboards/Base.lproj/Instructions.storyboard; sourceTree = "<group>"; };
+		323A6AE327E3F5110013E2FE /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		32BCB4ED27D2811000D22E3C /* Wordle2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordle2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BCB4F027D2811000D22E3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32BCB4F227D2811000D22E3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 		32BCB50527D2817700D22E3C /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				323A6AE027E3F4890013E2FE /* Instructions.storyboard */,
 				323A6ADD27E0DE5A0013E2FE /* Streak.storyboard */,
 				32BCB4F627D2811000D22E3C /* Main.storyboard */,
 				32BCB4FB27D2811200D22E3C /* LaunchScreen.storyboard */,
@@ -136,6 +141,7 @@
 				32BCB51627D7C3AC00D22E3C /* WordTableViewCell.swift */,
 				32BCB51A27D7CA0500D22E3C /* CustomUI.swift */,
 				323A6ADB27E0DAF40013E2FE /* StreakViewController.swift */,
+				323A6AE327E3F5110013E2FE /* InstructionsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -206,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32BCB4FD27D2811200D22E3C /* LaunchScreen.storyboard in Resources */,
+				323A6AE227E3F4890013E2FE /* Instructions.storyboard in Resources */,
 				32BCB4FA27D2811200D22E3C /* Assets.xcassets in Resources */,
 				32BCB4F827D2811000D22E3C /* Main.storyboard in Resources */,
 				323A6ADF27E0DE5A0013E2FE /* Streak.storyboard in Resources */,
@@ -223,6 +230,7 @@
 				323A6ADA27DFC9C80013E2FE /* WordGridViewController.swift in Sources */,
 				32BCB4F127D2811000D22E3C /* AppDelegate.swift in Sources */,
 				32EBA4FF27DA4D8D00252983 /* NetworkError.swift in Sources */,
+				323A6AE427E3F5110013E2FE /* InstructionsViewController.swift in Sources */,
 				32BCB51B27D7CA0500D22E3C /* CustomUI.swift in Sources */,
 				32BCB4F327D2811000D22E3C /* SceneDelegate.swift in Sources */,
 				32BCB51D27D7F48300D22E3C /* WordController.swift in Sources */,
@@ -240,6 +248,14 @@
 				323A6ADE27E0DE5A0013E2FE /* Base */,
 			);
 			name = Streak.storyboard;
+			sourceTree = "<group>";
+		};
+		323A6AE027E3F4890013E2FE /* Instructions.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				323A6AE127E3F4890013E2FE /* Base */,
+			);
+			name = Instructions.storyboard;
 			sourceTree = "<group>";
 		};
 		32BCB4F627D2811000D22E3C /* Main.storyboard */ = {
