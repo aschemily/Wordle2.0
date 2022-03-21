@@ -10,9 +10,9 @@ import UIKit
 class StreakViewController: UIViewController {
 
     @IBOutlet weak var timerLabel: UILabel!
+   @IBOutlet weak var winsLabel: UILabel!
+    
     var secondsRemaining = 30
-    
-    
    weak var delegate: ClearFireBaseDelegate?
     
     

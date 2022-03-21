@@ -34,6 +34,9 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     
     var wordOfTheDay: String = ""
     
+    var uid: String?
+    var numberOfWins = 0
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +49,8 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         congratsLabel.isHidden = true
         //initialize notification center and provide function and provide identification string
         
-        
+    uid = UIDevice.current.identifierForVendor?.uuidString
+       saveUserInfo()
     }
     
     //MARK: HELPER METHODS
@@ -71,23 +75,41 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         }
     }
     
-    
+    func saveUserInfo(){
+        guard let id = uid else {return}
+       // print("id is", id)
+       // print("in save user number of wins", numberOfWins)
+        ref.child("userInfo/\(id)").setValue(["numberOfWins": "\(numberOfWins)", "playersGuesses": "\(playersGuesses)", "wordOfTheDay": "\(wordOfTheDay)"])
+        
+    }
     
     func getNewWord(){
         guard let randomWord = WordController.filteredWords.randomElement() else {return}
         //self.wordOfTheDay = random element
          print("random word is", randomWord)
-        ref.child("wordOfTheDay").setValue(randomWord)
+        guard let id = uid else {return}
+     //   ref.child("wordOfTheDay").setValue(randomWord)
+        ref.child("userInfo/\(id)").child("wordOfTheDay").setValue(randomWord)
+        
         wordOfTheDay = randomWord
     }
     
     func getWordFromDB(){
+     guard let currentID = UIDevice.current.identifierForVendor?.uuidString else {return}
+       // print("current id", UIDevice.current.identifierForVendor?.uuidString)
+        print("id is", currentID)
+//        ref.child("userInfo").observeSingleEvent(of: .value) { snapshot in
+//            print(snapshot.value)
+//
+//        }
+        
         ref.child("wordOfTheDay").observeSingleEvent(of: .value) { snapshot in
-          
+         // print("what is snapshot", snapshot)
             if let word = snapshot.value as? String {
+                print("what is word", word)
                 self.wordOfTheDay = word
                 self.fetchAllWords()
-                self.ref.child("usersGuesses").observeSingleEvent(of: .value) { snapshot in
+                self.ref.child("playersGuesses").observeSingleEvent(of: .value) { snapshot in
                     guard let userGuessesFromDB = snapshot.value as? [String] else {return}
                     self.playersGuesses = userGuessesFromDB
                     self.updateColorsFromDB()
@@ -101,18 +123,35 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
       
     }
     
+    func updateUserInfo(){
+        guard let id = uid else {return}
+        let ref = ref.child("userInfo").child(id)
+        //print("ref is", ref.child("playersGuesses"))
+        
+        ref.child("playersGuesses").setValue(playersGuesses)
+    }
+    
+    
+    func saveUsersGuesses(){
+        ref.child("usersGuesses").setValue(playersGuesses)
+        
+    }
+    
     //clear database
     func clearDB(){
       //clear local
+        guard let id = uid else {return}
         playersGuesses = Array(repeating: "", count: 6)
         wordOfTheDay = ""
         colorsArray = Array(repeating: Array(repeating: .white, count: 5), count: 6)
-        ref.child("wordOfTheDay").removeValue()
-        ref.child("usersGuesses").removeValue()
+        ref.child("userInfo/\(id)").child("wordOfTheDay").removeValue()
+        ref.child("userInfo/\(id)").child("playersGuesses").removeValue()
         congratsLabel.isHidden = true
         keyBoardButtons.forEach({ $0.backgroundColor = #colorLiteral(red: 0.8744233251, green: 0.8745703101, blue: 0.8744040132, alpha: 1) })
         currentRow = 0
         getNewWord()
+        print("in clearDB")
+        print(ref.child("userInfo/\(id)").child("numberOfWins"))
         tableView.reloadData()
     }
     
@@ -140,10 +179,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         
     }
     
-    func saveUsersGuesses(){
-        ref.child("usersGuesses").setValue(playersGuesses)
-        
-    }
+  
     
     func updateColorsFromDB(){
         for word in playersGuesses{
@@ -207,45 +243,59 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
 
                 }
             }
-            print("\n")
-            print(splitWordOfTheDay)
-            print(splitPlayersGuess)
         }
         
     }
     
+    func updateWins(){
+        guard let id = uid else {return}
+        let ref = ref.child("userInfo").child(id)
+        
+        ref.child("numberOfWins").observeSingleEvent(of: .value) { snapshot in
+           // print(snapshot)
+            var currentWins = snapshot.value as? Int ?? 0
+            currentWins += 1
+            ref.child("numberOfWins").setValue(currentWins)
+        }
+    }
+
     
     
     func showLabel(){
-        var playersGuess = playersGuesses[currentRow].lowercased()
+       
+       var playersGuess = playersGuesses[currentRow].lowercased()
         
         switch (wordOfTheDay == playersGuess, currentRow){
         case (true, 0):
           
             congratsLabel.isHidden = false
             congratsLabel.text = "AMAZING!"
+            updateWins()
             showStreakVC()
         case (true, 1):
             congratsLabel.isHidden = false
             congratsLabel.text = "Great!"
-//            NotificationCenter.default.post(name: Notification.Name("StreakNotification"), object: nil)
+            updateWins()
             showStreakVC()
         case (true, 2):
             congratsLabel.isHidden = false
             congratsLabel.text = "Good Work!"
-//            NotificationCenter.default.post(name: Notification.Name("StreakNotification"), object: nil)
+            updateWins()
             showStreakVC()
         case (true, 3):
             congratsLabel.isHidden = false
             congratsLabel.text = "Close One!"
+            updateWins()
             showStreakVC()
         case (true, 4):
             congratsLabel.isHidden = false
             congratsLabel.text = "Nail Biter!"
+            updateWins()
             showStreakVC()
         case (true, 5):
             congratsLabel.isHidden = false
             congratsLabel.text = "PHEW!"
+            updateWins()
             showStreakVC()
 
         case(false, 5):
@@ -294,7 +344,8 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
                 compareWords()
                 invalidGuessLabel.isHidden = true
                 showLabel()
-                saveUsersGuesses()
+               saveUsersGuesses()
+                updateUserInfo()
                currentRow += 1
             }
     
