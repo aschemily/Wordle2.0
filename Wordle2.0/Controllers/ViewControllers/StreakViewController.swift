@@ -6,20 +6,24 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class StreakViewController: UIViewController {
 
-    @IBOutlet weak var timerLabel: UILabel!
    @IBOutlet weak var winsLabel: UILabel!
     
     var secondsRemaining = 30
    weak var delegate: ClearFireBaseDelegate?
     
+    var numberOfWins = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        print("number of wins in streak vc", numberOfWins)
+        updateViews()
     }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -30,6 +34,9 @@ class StreakViewController: UIViewController {
         }
     }
     
+    func updateViews(){
+        winsLabel.text = String(numberOfWins)
+    }
 //    func startTimer(seconds: Int){
 //        var secondsRemaining = seconds
 //        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
@@ -45,6 +52,7 @@ class StreakViewController: UIViewController {
 //        }
 //    }
     
+  
 
     @IBAction func continueBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

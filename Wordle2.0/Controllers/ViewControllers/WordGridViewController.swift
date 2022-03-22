@@ -41,6 +41,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
        // showInstructionsVC()
+        uid = UIDevice.current.identifierForVendor?.uuidString
         tableView.delegate = self
         tableView.dataSource = self
        // fetchAllWords()
@@ -49,8 +50,9 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         congratsLabel.isHidden = true
         //initialize notification center and provide function and provide identification string
         
-    uid = UIDevice.current.identifierForVendor?.uuidString
-       saveUserInfo()
+   
+      // saveUserInfo()
+        fetchUserInfo()
     }
     
     //MARK: HELPER METHODS
@@ -75,10 +77,22 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         }
     }
     
+    func fetchUserInfo(){
+        guard let id = uid else {return}
+        
+        ref.child("userInfo/\(id)").child("numberOfWins").observeSingleEvent(of: .value) { snapshot in
+           // print(snapshot.value)
+            if let wins = snapshot.value as? Int {
+                self.numberOfWins = wins
+            }
+            
+        }
+        
+    }
+    
     func saveUserInfo(){
         guard let id = uid else {return}
-       // print("id is", id)
-       // print("in save user number of wins", numberOfWins)
+      
         ref.child("userInfo/\(id)").setValue(["numberOfWins": "\(numberOfWins)", "playersGuesses": "\(playersGuesses)", "wordOfTheDay": "\(wordOfTheDay)"])
         
     }
@@ -95,21 +109,22 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     }
     
     func getWordFromDB(){
-     guard let currentID = UIDevice.current.identifierForVendor?.uuidString else {return}
+     guard let currentID =  uid else {return}
+       // UIDevice.current.identifierForVendor?.uuidString
        // print("current id", UIDevice.current.identifierForVendor?.uuidString)
-        print("id is", currentID)
+      //  print("id is", currentID)
 //        ref.child("userInfo").observeSingleEvent(of: .value) { snapshot in
 //            print(snapshot.value)
 //
 //        }
         
-        ref.child("wordOfTheDay").observeSingleEvent(of: .value) { snapshot in
+        ref.child("userInfo/\(currentID)").child("wordOfTheDay").observeSingleEvent(of: .value) { snapshot in
          // print("what is snapshot", snapshot)
             if let word = snapshot.value as? String {
                 print("what is word", word)
                 self.wordOfTheDay = word
                 self.fetchAllWords()
-                self.ref.child("playersGuesses").observeSingleEvent(of: .value) { snapshot in
+                self.ref.child("userInfo/\(currentID)").child("playersGuesses").observeSingleEvent(of: .value) { snapshot in
                     guard let userGuessesFromDB = snapshot.value as? [String] else {return}
                     self.playersGuesses = userGuessesFromDB
                     self.updateColorsFromDB()
@@ -123,18 +138,19 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
       
     }
     
-    func updateUserInfo(){
-        guard let id = uid else {return}
-        let ref = ref.child("userInfo").child(id)
-        //print("ref is", ref.child("playersGuesses"))
-        
-        ref.child("playersGuesses").setValue(playersGuesses)
-    }
+//    func updateUserInfo(){
+//        guard let id = uid else {return}
+//        let ref = ref.child("userInfo").child(id)
+//        //print("ref is", ref.child("playersGuesses"))
+//
+//        ref.child("playersGuesses").setValue(playersGuesses)
+//    }
     
     
     func saveUsersGuesses(){
-        ref.child("usersGuesses").setValue(playersGuesses)
-        
+        guard let id = uid else {return}
+        ref.child("userInfo/\(id)").child("playersGuesses").setValue(playersGuesses)
+
     }
     
     //clear database
@@ -160,6 +176,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         let streakVC = storyBoard.instantiateViewController(withIdentifier: "streakID") as! StreakViewController
         streakVC.delegate = self
         
+        streakVC.numberOfWins = numberOfWins
         //add timer to present
         self.present(streakVC, animated:true, completion:nil)
         
@@ -251,16 +268,11 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         guard let id = uid else {return}
         let ref = ref.child("userInfo").child(id)
         
-        ref.child("numberOfWins").observeSingleEvent(of: .value) { snapshot in
-           // print(snapshot)
-            var currentWins = snapshot.value as? Int ?? 0
-            currentWins += 1
-            ref.child("numberOfWins").setValue(currentWins)
-        }
+        numberOfWins += 1
+        ref.child("numberOfWins").setValue(numberOfWins)
     }
 
-    
-    
+   
     func showLabel(){
        
        var playersGuess = playersGuesses[currentRow].lowercased()
@@ -328,7 +340,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     @IBAction func keyBoardTapped(_ sender: UIButton) {
         //pass keyboard press to cell
         switch sender.tag{
-        case 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20,21,22,23,24,25,26:
+        case 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20,21,22,23,24,25,26:
             guard let letter = sender.titleLabel?.text
             else {return}
             lettersGuessed(letter: letter)
@@ -345,7 +357,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
                 invalidGuessLabel.isHidden = true
                 showLabel()
                saveUsersGuesses()
-                updateUserInfo()
+              //  updateUserInfo()
                currentRow += 1
             }
     
