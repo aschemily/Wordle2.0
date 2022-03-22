@@ -12,7 +12,8 @@ class StreakViewController: UIViewController {
 
    @IBOutlet weak var winsLabel: UILabel!
     
-    var secondsRemaining = 30
+   var secondsRemaining = 30
+    
    weak var delegate: ClearFireBaseDelegate?
     
     var numberOfWins = 0

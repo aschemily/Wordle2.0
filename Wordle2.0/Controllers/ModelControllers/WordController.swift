@@ -9,8 +9,7 @@ import Foundation
 import Firebase
 
 class WordController{
-    static let shared = WordController()
-    
+
     //word of the day
     //source of truth filtered array
     static var filteredWords: [String] = []
@@ -18,9 +17,27 @@ class WordController{
     //https://random-word-api.herokuapp.com/all
     let ref = Database.database().reference()
     
-    static let url = URL(string:"https://random-word-api.herokuapp.com/all")
+  static let url = URL(string:"https://random-word-api.herokuapp.com/all")
     
     
+    /**
+        This functions fetches words from Firebase
+
+     # Notes: #
+     1.  If no internet connection is there then the function won't work
+     2.  Function will either return a string value or network error
+
+     # Example #
+    ```
+     // fetch the string value
+     let wordData = try JSONDecoder().decode([String].self, from: data)
+     filteredWords = wordData.filter{$0.count == 5}
+     return completion(.success("🟢successfully fetched all words🟢"))
+     
+     // Save to local array variable on WordController
+     static var filteredWords: [String] = []
+    ```
+    */
     static func fetchWords(completion: @escaping (Result <String, NetworkError>)-> Void){
         //ensure url is there
         guard let url = url else{

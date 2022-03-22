@@ -29,6 +29,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     
     
     //array of array of background colors
+    /// color array is a two dimensional array of ui color
     var colorsArray: [[UIColor]] = Array(repeating: Array(repeating: .white, count: 5), count: 6)
     //    [[.yellow, .gray, .green, .blue, .red],[.brown, .red, .blue, .cyan, .yellow], [.systemIndigo, .purple, .orange, .systemMint, .systemPink],[.yellow, .gray, .green, .blue, .red],[.brown, .red, .blue, .cyan, .yellow], [.systemIndigo, .purple, .orange, .systemMint, .systemPink]]
     
@@ -49,14 +50,12 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         invalidGuessLabel.isHidden = true
         congratsLabel.isHidden = true
         //initialize notification center and provide function and provide identification string
-        
-   
+
       // saveUserInfo()
         fetchUserInfo()
     }
     
-    //MARK: HELPER METHODS
-    
+
     func fetchAllWords(){
         WordController.fetchWords { result in
             switch result{
