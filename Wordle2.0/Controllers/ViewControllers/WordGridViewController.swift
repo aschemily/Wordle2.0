@@ -116,24 +116,21 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     
     func getWordFromDB(){
      guard let currentID =  uid else {return}
-       // UIDevice.current.identifierForVendor?.uuidString
-       // print("current id", UIDevice.current.identifierForVendor?.uuidString)
-      //  print("id is", currentID)
-//        ref.child("userInfo").observeSingleEvent(of: .value) { snapshot in
-//            print(snapshot.value)
-//
-//        }
-        
+     
         ref.child("userInfo/\(currentID)").child("wordOfTheDay").observeSingleEvent(of: .value) { snapshot in
          // print("what is snapshot", snapshot)
             if let word = snapshot.value as? String {
-                print("what is word", word)
                 self.wordOfTheDay = word
                 self.fetchAllWords()
                 self.ref.child("userInfo/\(currentID)").child("playersGuesses").observeSingleEvent(of: .value) { snapshot in
                     guard let userGuessesFromDB = snapshot.value as? [String] else {return}
                     self.playersGuesses = userGuessesFromDB
                     self.updateColorsFromDB()
+                   // print("what is word", word, "user guess", userGuessesFromDB)
+                   // print("contains",userGuessesFromDB.contains(word.uppercased()))
+                    if userGuessesFromDB.contains(word.uppercased()){
+                        self.clearDB()
+                    }
                 }
 
             }else{
@@ -172,7 +169,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         keyBoardButtons.forEach({ $0.backgroundColor = #colorLiteral(red: 0.8744233251, green: 0.8745703101, blue: 0.8744040132, alpha: 1) })
         currentRow = 0
         getNewWord()
-        print("in clearDB")
+       // print("in clearDB")
         print(ref.child("userInfo/\(id)").child("numberOfWins"))
         tableView.reloadData()
     }
@@ -180,14 +177,12 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     func showStreakVC(){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Streak", bundle:nil)
         let streakVC = storyBoard.instantiateViewController(withIdentifier: "streakID") as! StreakViewController
-      //  streakVC.modalPresentationStyle = .overFullScreen
         streakVC.delegate = self
         
         streakVC.numberOfWins = numberOfWins
         streakVC.streakArray = playersRowStreak
-        //add timer to present
+    
         self.present(streakVC, animated:true, completion:nil)
-        
     }
     
     func showInstructionsVC(){
@@ -281,22 +276,10 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         ref.child("numberOfWins").setValue(numberOfWins)
         ref.child("playersRowStreak").setValue(playersRowStreak)
     }
-    
-//    func updateRowStreak(){
-//        guard let id = uid else {return}
-//        let ref = ref.child("userInfo").child(id)
-//
-//        ref.child("playersRowStreak").setValue(playersRowStreak)
-//
-//    }
 
-   
+    
     func showLabel(){
-        
-//        guard let id = uid else {return}
-//        let ref = ref.child("userInfo").child(id)
-     
-        //[0,0,0,0,0,0]
+ 
        var playersGuess = playersGuesses[currentRow].lowercased()
         
         switch (wordOfTheDay == playersGuess, currentRow){
@@ -305,14 +288,6 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
             congratsLabel.isHidden = false
             congratsLabel.text = "AMAZING!"
             updateWins()
-//            row1 += 1
-//            ref.child("row1").setValue("\(row1)")
-//            print("first", playersRowStreak[0])
-//            print("+= 1", playersRowStreak[0] += 1)
-//            print("increments", playersRowStreak[0])
-//            playersRowStreak[0] += 1
-//         ref.child("playersRowStreak").setValue("\(playersRowStreak[0])")
-            
             showStreakVC()
         case (true, 1):
             congratsLabel.isHidden = false

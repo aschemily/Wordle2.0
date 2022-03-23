@@ -29,6 +29,7 @@ class StreakViewController: UIViewController {
     
     var numberOfWins = 0
     var streakArray: [Int] = []
+    var databasedCleared = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
