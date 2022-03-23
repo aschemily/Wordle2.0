@@ -11,12 +11,14 @@ import FirebaseDatabase
 class StreakViewController: UIViewController {
 
    @IBOutlet weak var winsLabel: UILabel!
+   @IBOutlet weak var row1Label: UILabel!
     
-   var secondsRemaining = 30
+    var secondsRemaining = 30
     
    weak var delegate: ClearFireBaseDelegate?
     
     var numberOfWins = 0
+    var row1 = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,7 @@ class StreakViewController: UIViewController {
     
     func updateViews(){
         winsLabel.text = String(numberOfWins)
+        row1Label.text = String(row1)
     }
 //    func startTimer(seconds: Int){
 //        var secondsRemaining = seconds
