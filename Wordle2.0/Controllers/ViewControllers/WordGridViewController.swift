@@ -36,11 +36,9 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     //    [[.yellow, .gray, .green, .blue, .red],[.brown, .red, .blue, .cyan, .yellow], [.systemIndigo, .purple, .orange, .systemMint, .systemPink],[.yellow, .gray, .green, .blue, .red],[.brown, .red, .blue, .cyan, .yellow], [.systemIndigo, .purple, .orange, .systemMint, .systemPink]]
     
     var wordOfTheDay: String = ""
-    
     var uid: String?
     var numberOfWins = 0
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
        // showInstructionsVC()
@@ -128,7 +126,8 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
                     self.updateColorsFromDB()
                    // print("what is word", word, "user guess", userGuessesFromDB)
                    // print("contains",userGuessesFromDB.contains(word.uppercased()))
-                    if userGuessesFromDB.contains(word.uppercased()){
+                    print("array count", userGuessesFromDB.count)
+                    if userGuessesFromDB.contains(word.uppercased()) || !userGuessesFromDB[5].isEmpty{
                         self.clearDB()
                     }
                 }
@@ -256,11 +255,15 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
                     }
 
                     colorsArray[currentRow][i] = #colorLiteral(red: 0.8781039119, green: 0.7762021422, blue: 0.2915796041, alpha: 1)
+               
                 }else{
-                    if colorsArray[currentRow][i] != #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1) {
+                    if colorsArray[currentRow][i] != #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1){
                         colorsArray[currentRow][i] = #colorLiteral(red: 0.4011883438, green: 0.4024074376, blue: 0.4174343646, alpha: 1)
                     }
-
+               
+                    if String(letter) == btnLetter.lowercased() && btn.backgroundColor != #colorLiteral(red: 0.4489225149, green: 0.7674041986, blue: 0.4262357354, alpha: 1){
+                        btn.backgroundColor = #colorLiteral(red: 0.4011883438, green: 0.4024074376, blue: 0.4174343646, alpha: 1)
+                    }
                 }
             }
         }
