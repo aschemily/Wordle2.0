@@ -12,13 +12,23 @@ class StreakViewController: UIViewController {
 
    @IBOutlet weak var winsLabel: UILabel!
    @IBOutlet weak var row1Label: UILabel!
+   @IBOutlet weak var row2Label: UILabel!
+    @IBOutlet weak var row3Label: UILabel!
+    
+    @IBOutlet weak var row4Label: UILabel!
+    
+    @IBOutlet weak var row5Label: UILabel!
+    
+    @IBOutlet weak var row6Label: UILabel!
+    
+    
     
     var secondsRemaining = 30
     
    weak var delegate: ClearFireBaseDelegate?
     
     var numberOfWins = 0
-    var row1 = 0
+    var streakArray: [Int] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +49,12 @@ class StreakViewController: UIViewController {
     
     func updateViews(){
         winsLabel.text = String(numberOfWins)
-        row1Label.text = String(row1)
+        row1Label.text = String(streakArray[0])
+        row2Label.text = String(streakArray[1])
+        row3Label.text = String(streakArray[2])
+        row4Label.text = String(streakArray[3])
+        row5Label.text = String(streakArray[4])
+        row6Label.text = String(streakArray[5])
     }
 //    func startTimer(seconds: Int){
 //        var secondsRemaining = seconds

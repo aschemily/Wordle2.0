@@ -86,7 +86,12 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
             if let wins = snapshot.value as? Int {
                 self.numberOfWins = wins
             }
-            
+        }
+        
+        ref.child("userInfo/\(id)").child("playersRowStreak").observeSingleEvent(of: .value) { snapshot in
+            if let streak = snapshot.value as? [Int] {
+                self.playersRowStreak = streak
+            }
         }
         
     }
@@ -175,10 +180,11 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
     func showStreakVC(){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Streak", bundle:nil)
         let streakVC = storyBoard.instantiateViewController(withIdentifier: "streakID") as! StreakViewController
+      //  streakVC.modalPresentationStyle = .overFullScreen
         streakVC.delegate = self
         
         streakVC.numberOfWins = numberOfWins
-        streakVC.row1 = row1
+        streakVC.streakArray = playersRowStreak
         //add timer to present
         self.present(streakVC, animated:true, completion:nil)
         
@@ -271,7 +277,9 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         let ref = ref.child("userInfo").child(id)
         
         numberOfWins += 1
+        playersRowStreak[currentRow] += 1
         ref.child("numberOfWins").setValue(numberOfWins)
+        ref.child("playersRowStreak").setValue(playersRowStreak)
     }
     
 //    func updateRowStreak(){
@@ -285,9 +293,10 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
    
     func showLabel(){
         
-        guard let id = uid else {return}
-        let ref = ref.child("userInfo").child(id)
+//        guard let id = uid else {return}
+//        let ref = ref.child("userInfo").child(id)
      
+        //[0,0,0,0,0,0]
        var playersGuess = playersGuesses[currentRow].lowercased()
         
         switch (wordOfTheDay == playersGuess, currentRow){
@@ -296,28 +305,24 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
             congratsLabel.isHidden = false
             congratsLabel.text = "AMAZING!"
             updateWins()
-            row1 += 1
-            ref.child("row1").setValue("\(row1)")
-            print("first", playersRowStreak[0])
-            print("+= 1", playersRowStreak[0] += 1)
-            print("increments", playersRowStreak[0])
-            playersRowStreak[0] += 1
-         // ref.child("playersRowStreak").setValue("\(playersRowStreak[0])")
+//            row1 += 1
+//            ref.child("row1").setValue("\(row1)")
+//            print("first", playersRowStreak[0])
+//            print("+= 1", playersRowStreak[0] += 1)
+//            print("increments", playersRowStreak[0])
+//            playersRowStreak[0] += 1
+//         ref.child("playersRowStreak").setValue("\(playersRowStreak[0])")
             
             showStreakVC()
         case (true, 1):
             congratsLabel.isHidden = false
             congratsLabel.text = "Great!"
             updateWins()
-            playersRowStreak[1] += 1
-         // ref.child("playersRowStreak").setValue("\(playersRowStreak[1])")
             showStreakVC()
         case (true, 2):
             congratsLabel.isHidden = false
             congratsLabel.text = "Good Work!"
             updateWins()
-            playersRowStreak[1] += 1
-        //  ref.child("playersRowStreak").setValue("\(playersRowStreak[1])")
             showStreakVC()
         case (true, 3):
             congratsLabel.isHidden = false
