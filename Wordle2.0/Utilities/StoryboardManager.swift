@@ -33,21 +33,9 @@ struct StoryboardManager{
         
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
-        
-        
-//        UIApplication.shared.windows.first?.rootViewController = vc
-//        UIApplication.shared.windows.first?.makeKeyAndVisible()
+
     }
     
-//    func instantiateMainStoryBoard(window: UIWindow?){
-//        guard let window = window else {return}
-//        let rootVC = window.rootViewController
-//        let mainStoryBoard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
-//        let mainStoryboardVC = mainStoryBoard.instantiateViewController(withIdentifier: Constants.mainStoryBoardID)
-//        mainStoryboardVC.modalPresentationStyle = .fullScreen
-//        rootVC?.present(mainStoryboardVC, animated: true, completion: nil)
-//        window.makeKeyAndVisible()
-//    }
-    
+
     
 }
