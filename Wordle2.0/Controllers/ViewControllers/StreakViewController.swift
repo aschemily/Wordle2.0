@@ -76,6 +76,7 @@ class StreakViewController: UIViewController {
 
     @IBAction func continueBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        HapticManager.createFeedBack()
     }
     
     /*

@@ -375,6 +375,7 @@ class WordGridViewController: UIViewController, ClearFireBaseDelegate{
         default:
             break
         }
+       HapticManager.createFeedBack()
         tableView.reloadData()
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3239619827ECDFD500D39BF7 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3239619727ECDFD500D39BF7 /* HapticManager.swift */; };
 		323A6AD427DFB2590013E2FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 323A6AD327DFB2590013E2FE /* GoogleService-Info.plist */; };
 		323A6AD727DFB4600013E2FE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 323A6AD627DFB4600013E2FE /* FirebaseAnalytics */; };
 		323A6AD927DFB4600013E2FE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 323A6AD827DFB4600013E2FE /* FirebaseDatabase */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3239619727ECDFD500D39BF7 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		323A6AD327DFB2590013E2FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		323A6ADB27E0DAF40013E2FE /* StreakViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakViewController.swift; sourceTree = "<group>"; };
 		323A6ADE27E0DE5A0013E2FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Wordle2.0/Storyboards/Base.lproj/Streak.storyboard; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				32BCB4FE27D2811200D22E3C /* Info.plist */,
 				323A6AD327DFB2590013E2FE /* GoogleService-Info.plist */,
 				323A6AE827EA12950013E2FE /* Constants.swift */,
+				3239619727ECDFD500D39BF7 /* HapticManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				32BCB4F327D2811000D22E3C /* SceneDelegate.swift in Sources */,
 				32BCB51D27D7F48300D22E3C /* WordController.swift in Sources */,
 				323A6ADC27E0DAF40013E2FE /* StreakViewController.swift in Sources */,
+				3239619827ECDFD500D39BF7 /* HapticManager.swift in Sources */,
 				32BCB51727D7C3AC00D22E3C /* WordTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +420,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7268W7R8AK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Wordle2.0/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Werdle;
@@ -445,6 +450,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7268W7R8AK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Wordle2.0/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Werdle;

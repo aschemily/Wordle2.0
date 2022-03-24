@@ -40,8 +40,8 @@ class InstructionsViewController: UIViewController {
     @IBAction func closeBtnPressed(_ sender: Any) {
         UserDefaults.standard.set(true, forKey: Constants.isOnboardedKey)
      //   self.dismiss(animated: true, completion: nil)
-       
         storyBoardManager.instatiateMainStoryBoard()
+        HapticManager.createFeedBack()
     }
     
 }
