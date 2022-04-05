@@ -1,18 +1,7 @@
 # Wordle2.0
 
-#Api URLS 
-api: http://random-word-api.herokuapp.com/home
-url: https://random-word-api.herokuapp.com/all
-
-#MVP 
-implement some sort of persistence either core data, Cloudkit or local persistence. 
-change tile colors based on word guessed 
-implement modal to show statistics  
+Based on the original game Wordle, Werdle (Wordle2.0) holds similar design and functionality. The key difference is the streak design and the ability to play unlimited amount. The tech used was a Firebase realtime Database, API and user defaults. Hope you enjoy! 
 
 
-#Additional features
-incorporate keyboard capability greying out when letters guessed are not in word 
-add option to share on social media platforms 
-option to play with longer letters (this may be a reach and would require second board) 
 
 
